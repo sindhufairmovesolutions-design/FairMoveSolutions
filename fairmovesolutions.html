@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoFinance Pro - Car Loans Made Easy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .active-nav {
+            background-color: #4f46e5;
+            color: white;
+        }
+        .loan-option {
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .loan-option:hover {
+            border-color: #4f46e5;
+            background-color: #f8fafc;
+        }
+        .loan-option.selected {
+            border-color: #4f46e5;
+            background-color: #eef2ff;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold text-indigo-600">🚗 AutoFinance Pro</div>
+                </div>
+                <div class="hidden md:flex space-x-1">
+                    <button onclick="showSection('home')" class="nav-btn px-4 py-2 rounded-lg transition-colors hover:bg-indigo-100">Home</button>
+                    <button onclick="showSection('car-loans')" class="nav-btn px-4 py-2 rounded-lg transition-colors hover:bg-indigo-100">Car Loans</button>
+                    <button onclick="showSection('benefits')" class="nav-btn px-4 py-2 rounded-lg transition-colors hover:bg-indigo-100">Benefits</button>
+                    <button onclick="showSection('eligibility')" class="nav-btn px-4 py-2 rounded-lg transition-colors hover:bg-indigo-100">Eligibility</button>
+                    <button onclick="showSection('documents')" class="nav-btn px-4 py-2 rounded-lg transition-colors hover:bg-indigo-100">Documents</button>
+                    <button onclick="showSection('contact')" class="nav-btn px-4 py-2 rounded-lg transition-colors hover:bg-indigo-100">Contact Us</button>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-gray-900">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <button onclick="showSection('home')" class="block w-full text-left px-4 py-2 hover:bg-indigo-100 rounded">Home</button>
+                <button onclick="showSection('car-loans')" class="block w-full text-left px-4 py-2 hover:bg-indigo-100 rounded">Car Loans</button>
+                <button onclick="showSection('benefits')" class="block w-full text-left px-4 py-2 hover:bg-indigo-100 rounded">Benefits</button>
+                <button onclick="showSection('eligibility')" class="block w-full text-left px-4 py-2 hover:bg-indigo-100 rounded">Eligibility</button>
+                <button onclick="showSection('documents')" class="block w-full text-left px-4 py-2 hover:bg-indigo-100 rounded">Documents</button>
+                <button onclick="showSection('contact')" class="block w-full text-left px-4 py-2 hover:bg-indigo-100 rounded">Contact Us</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="gradient-bg text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h1 class="text-5xl font-bold mb-6">Drive Your Dream Car Today</h1>
+                <p class="text-xl mb-8 max-w-3xl mx-auto">Get the best car loan deals with competitive interest rates, quick approval, and flexible repayment options. Your perfect car is just a click away!</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="showSection('car-loans')" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Explore Loans</button>
+                    <button onclick="showSection('contact')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">Get Quote</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                    <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-xl">
+                        <div class="text-3xl font-bold text-indigo-600 mb-2">50,000+</div>
+                        <div class="text-gray-600">Happy Customers</div>
+                    </div>
+                    <div class="card-hover bg-gradient-to-br from-green-50 to-emerald-100 p-6 rounded-xl">
+                        <div class="text-3xl font-bold text-emerald-600 mb-2">8.5%</div>
+                        <div class="text-gray-600">Starting Interest Rate</div>
+                    </div>
+                    <div class="card-hover bg-gradient-to-br from-purple-50 to-violet-100 p-6 rounded-xl">
+                        <div class="text-3xl font-bold text-violet-600 mb-2">24 Hours</div>
+                        <div class="text-gray-600">Quick Approval</div>
+                    </div>
+                    <div class="card-hover bg-gradient-to-br from-orange-50 to-amber-100 p-6 rounded-xl">
+                        <div class="text-3xl font-bold text-amber-600 mb-2">7 Years</div>
+                        <div class="text-gray-600">Max Tenure</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Car Loans Section -->
+    <section id="car-loans" class="section hidden">
+        <div class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Car Loan Options</h2>
+                    <p class="text-xl text-gray-600">Choose the perfect loan type for your needs</p>
+                </div>
+
+                <!-- Loan Type Selector -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="card-hover bg-white p-8 rounded-xl shadow-lg">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">🚗</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">New Car Loans</h3>
+                            <p class="text-gray-600 mb-6">Finance your brand new car with attractive interest rates starting from 8.5% and up to 90% funding</p>
+                            <ul class="text-left space-y-2 mb-6">
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Up to 90% financing</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Tenure up to 7 years</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Minimal documentation</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Quick approval</li>
+                            </ul>
+                            <button onclick="selectLoanType('new')" class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors">Choose New Car Loan</button>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-white p-8 rounded-xl shadow-lg">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">🚙</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Used Car Loans</h3>
+                            <p class="text-gray-600 mb-6">Get financing for pre-owned vehicles with competitive rates starting from 9.5% and flexible terms</p>
+                            <ul class="text-left space-y-2 mb-6">
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Up to 80% financing</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Tenure up to 5 years</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Car age up to 5 years</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Free valuation</li>
+                            </ul>
+                            <button onclick="selectLoanType('used')" class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors">Choose Used Car Loan</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loan Services -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Additional Loan Services</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="loan-option p-6 rounded-lg cursor-pointer" onclick="selectService('sale-purchase')">
+                            <div class="text-center">
+                                <div class="text-3xl mb-3">💰</div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Sale Purchase</h4>
+                                <p class="text-sm text-gray-600">Complete financing solution for buying and selling cars</p>
+                            </div>
+                        </div>
+                        <div class="loan-option p-6 rounded-lg cursor-pointer" onclick="selectService('refinance')">
+                            <div class="text-center">
+                                <div class="text-3xl mb-3">🔄</div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Refinance</h4>
+                                <p class="text-sm text-gray-600">Lower your existing loan interest rates and EMI</p>
+                            </div>
+                        </div>
+                        <div class="loan-option p-6 rounded-lg cursor-pointer" onclick="selectService('balance-transfer')">
+                            <div class="text-center">
+                                <div class="text-3xl mb-3">↔️</div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Balance Transfer</h4>
+                                <p class="text-sm text-gray-600">Internal & External balance transfer options</p>
+                            </div>
+                        </div>
+                        <div class="loan-option p-6 rounded-lg cursor-pointer" onclick="selectService('top-up')">
+                            <div class="text-center">
+                                <div class="text-3xl mb-3">📈</div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Top-up</h4>
+                                <p class="text-sm text-gray-600">Additional funding on your existing car loan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="section hidden">
+        <div class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Why Choose Our Car Loans?</h2>
+                    <p class="text-xl text-gray-600">Experience the best-in-class benefits and features</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-hover bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl">
+                        <div class="text-4xl mb-4">⚡</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Quick Approval</h3>
+                        <p class="text-gray-600">Get loan approval within 24 hours with our streamlined digital process and minimal documentation.</p>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl">
+                        <div class="text-4xl mb-4">💰</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Competitive Rates</h3>
+                        <p class="text-gray-600">Enjoy attractive interest rates starting from 8.5% for new cars and 9.5% for used cars.</p>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-xl">
+                        <div class="text-4xl mb-4">📋</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Minimal Documentation</h3>
+                        <p class="text-gray-600">Simple paperwork with digital document submission for faster processing and convenience.</p>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-xl">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Flexible Tenure</h3>
+                        <p class="text-gray-600">Choose repayment tenure from 1 to 7 years based on your financial comfort and preferences.</p>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-pink-50 to-pink-100 p-8 rounded-xl">
+                        <div class="text-4xl mb-4">🛡️</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">No Hidden Charges</h3>
+                        <p class="text-gray-600">Transparent pricing with no hidden fees. What you see is what you pay - complete transparency.</p>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-indigo-50 to-indigo-100 p-8 rounded-xl">
+                        <div class="text-4xl mb-4">🎁</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Special Offers</h3>
+                        <p class="text-gray-600">Exclusive deals for government employees, women borrowers, and existing customers with additional benefits.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eligibility Section -->
+    <section id="eligibility" class="section hidden">
+        <div class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Eligibility Criteria</h2>
+                    <p class="text-xl text-gray-600">Check if you qualify for our car loans</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Salaried Individuals -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                            <span class="text-3xl mr-3">👔</span>
+                            Salaried Individuals
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <strong>Age:</strong> 21 to 65 years
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <strong>Income:</strong> Minimum ₹25,000 per month
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <strong>Experience:</strong> Minimum 2 years in current job
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <strong>Credit Score:</strong> 650 and above preferred
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <strong>Employment:</strong> Permanent employment with reputed company
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Self-Employed -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                            <span class="text-3xl mr-3">💼</span>
+                            Self-Employed
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <strong>Age:</strong> 25 to 65 years
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <strong>Income:</strong> Minimum ₹40,000 per month
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <strong>Business:</strong> Minimum 3 years in current business
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <strong>ITR:</strong> Filed for last 2 years
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <strong>Credit Score:</strong> 700 and above preferred
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eligibility Calculator -->
+                <div class="mt-12 bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Quick Eligibility Check</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Monthly Income (₹)</label>
+                            <input type="number" id="income" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="50000">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                            <input type="number" id="age" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="30">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Employment Type</label>
+                            <select id="employment" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="salaried">Salaried</option>
+                                <option value="self-employed">Self-Employed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button onclick="checkEligibility()" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition-colors">Check Eligibility</button>
+                    </div>
+                    <div id="eligibility-result" class="mt-6 p-4 rounded-lg hidden"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documents Section -->
+    <section id="documents" class="section hidden">
+        <div class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Required Documents</h2>
+                    <p class="text-xl text-gray-600">Simple documentation process for quick loan approval</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Identity Documents -->
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <span class="text-2xl mr-3">🆔</span>
+                            Identity Proof
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <span class="text-blue-500 mr-2">📄</span>
+                                Aadhaar Card
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-blue-500 mr-2">📄</span>
+                                PAN Card
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-blue-500 mr-2">📄</span>
+                                Passport
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-blue-500 mr-2">📄</span>
+                                Voter ID
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-blue-500 mr-2">📄</span>
+                                Driving License
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Address Documents -->
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <span class="text-2xl mr-3">🏠</span>
+                            Address Proof
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-2">📄</span>
+                                Utility Bills
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-2">📄</span>
+                                Bank Statements
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-2">📄</span>
+                                Rental Agreement
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-2">📄</span>
+                                Property Documents
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-2">📄</span>
+                                Aadhaar Card
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Income Documents -->
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <span class="text-2xl mr-3">💰</span>
+                            Income Proof
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <span class="text-purple-500 mr-2">📄</span>
+                                Salary Slips (3 months)
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-purple-500 mr-2">📄</span>
+                                Bank Statements (6 months)
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-purple-500 mr-2">📄</span>
+                                Form 16 / ITR
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-purple-500 mr-2">📄</span>
+                                Employment Certificate
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-purple-500 mr-2">📄</span>
+                                Business Proof (Self-employed)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Additional Documents -->
+                <div class="mt-12 bg-gray-50 p-8 rounded-xl">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Additional Documents</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                <span class="text-xl mr-2">🚗</span>
+                                For New Car Loans
+                            </h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <span class="text-indigo-500 mr-2">•</span>
+                                    Proforma Invoice from Dealer
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-indigo-500 mr-2">•</span>
+                                    Insurance Quotation
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-indigo-500 mr-2">•</span>
+                                    Booking Receipt
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                <span class="text-xl mr-2">🚙</span>
+                                For Used Car Loans
+                            </h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <span class="text-indigo-500 mr-2">•</span>
+                                    Registration Certificate (RC)
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-indigo-500 mr-2">•</span>
+                                    Insurance Papers
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-indigo-500 mr-2">•</span>
+                                    NOC from Previous Lender
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-indigo-500 mr-2">•</span>
+                                    Valuation Report
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section hidden">
+        <div class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Contact Us</h2>
+                    <p class="text-xl text-gray-600">Get in touch with our loan experts</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Contact Form -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Get a Quote</h3>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                            <p class="text-yellow-800 text-sm">
+                                <strong>Demo Form:</strong> This is a sample contact form. In a real implementation, form submissions would be processed by a backend server.
+                            </p>
+                        </div>
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                    <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="John Doe">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                    <input type="tel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="+91 9876543210">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="john@example.com">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Loan Type</label>
+                                    <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                        <option>New Car Loan</option>
+                                        <option>Used Car Loan</option>
+                                        <option>Refinance</option>
+                                        <option>Balance Transfer</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Loan Amount (₹)</label>
+                                    <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="500000">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Tell us about your requirements..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors">Submit Application</button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="space-y-8">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6">Get in Touch</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="text-2xl mr-4">📞</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Phone</h4>
+                                        <p class="text-gray-600">+91 1800-123-4567</p>
+                                        <p class="text-gray-600">+91 9876-543-210</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="text-2xl mr-4">✉️</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Email</h4>
+                                        <p class="text-gray-600">loans@autofinancepro.com</p>
+                                        <p class="text-gray-600">support@autofinancepro.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="text-2xl mr-4">📍</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Address</h4>
+                                        <p class="text-gray-600">123 Finance Street<br>Business District<br>Mumbai, Maharashtra 400001</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="text-2xl mr-4">🕒</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Business Hours</h4>
+                                        <p class="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                                        <p class="text-gray-600">Saturday: 9:00 AM - 2:00 PM</p>
+                                        <p class="text-gray-600">Sunday: Closed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-8 rounded-xl">
+                            <h3 class="text-2xl font-bold mb-4">Quick Callback</h3>
+                            <p class="mb-6">Need immediate assistance? Request a callback and our loan expert will call you within 30 minutes!</p>
+                            <button onclick="requestCallback()" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Request Callback</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold mb-4">🚗 AutoFinance Pro</div>
+                    <p class="text-gray-300 mb-4">Your trusted partner for car loans with competitive rates and quick approvals.</p>
+                    <div class="flex space-x-4">
+                        <span class="text-2xl cursor-pointer hover:text-indigo-400">📘</span>
+                        <span class="text-2xl cursor-pointer hover:text-indigo-400">🐦</span>
+                        <span class="text-2xl cursor-pointer hover:text-indigo-400">📷</span>
+                        <span class="text-2xl cursor-pointer hover:text-indigo-400">💼</span>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" onclick="showSection('home')" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" onclick="showSection('car-loans')" class="text-gray-300 hover:text-white transition-colors">Car Loans</a></li>
+                        <li><a href="#" onclick="showSection('benefits')" class="text-gray-300 hover:text-white transition-colors">Benefits</a></li>
+                        <li><a href="#" onclick="showSection('eligibility')" class="text-gray-300 hover:text-white transition-colors">Eligibility</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><span class="text-gray-300">New Car Loans</span></li>
+                        <li><span class="text-gray-300">Used Car Loans</span></li>
+                        <li><span class="text-gray-300">Refinancing</span></li>
+                        <li><span class="text-gray-300">Balance Transfer</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2">
+                        <li class="text-gray-300">📞 +91 1800-123-4567</li>
+                        <li class="text-gray-300">✉️ loans@autofinancepro.com</li>
+                        <li class="text-gray-300">📍 Mumbai, Maharashtra</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2024 AutoFinance Pro. All rights reserved. | Privacy Policy | Terms & Conditions</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Update navigation
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('active-nav');
+            });
+            event.target.classList.add('active-nav');
+            
+            // Close mobile menu
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Loan type selection
+        function selectLoanType(type) {
+            alert(`You selected ${type === 'new' ? 'New' : 'Used'} Car Loan. Our team will contact you shortly with the best offers!`);
+        }
+
+        // Service selection
+        function selectService(service) {
+            const services = document.querySelectorAll('.loan-option');
+            services.forEach(s => s.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            
+            const serviceNames = {
+                'sale-purchase': 'Sale Purchase',
+                'refinance': 'Refinance',
+                'balance-transfer': 'Balance Transfer (Internal & External)',
+                'top-up': 'Top-up Loan'
+            };
+            
+            alert(`You selected ${serviceNames[service]}. Our loan specialist will contact you with detailed information and best rates!`);
+        }
+
+        // Eligibility checker
+        function checkEligibility() {
+            const income = parseInt(document.getElementById('income').value);
+            const age = parseInt(document.getElementById('age').value);
+            const employment = document.getElementById('employment').value;
+            const resultDiv = document.getElementById('eligibility-result');
+            
+            if (!income || !age) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            let eligible = false;
+            let message = '';
+            
+            if (employment === 'salaried') {
+                if (age >= 21 && age <= 65 && income >= 25000) {
+                    eligible = true;
+                    message = 'Congratulations! You are eligible for our car loan. You can get up to 90% financing with attractive interest rates starting from 8.5%.';
+                } else {
+                    message = 'Based on our basic criteria, you may not be eligible. However, we have special programs that might work for you. Please contact our team for a detailed assessment.';
+                }
+            } else {
+                if (age >= 25 && age <= 65 && income >= 40000) {
+                    eligible = true;
+                    message = 'Great! You meet our eligibility criteria for self-employed individuals. You can get up to 80% financing with competitive rates starting from 9.5%.';
+                } else {
+                    message = 'You may not meet our standard criteria, but we have flexible options available. Our team can help you explore alternative solutions.';
+                }
+            }
+            
+            resultDiv.className = `mt-6 p-4 rounded-lg ${eligible ? 'bg-green-100 border border-green-300' : 'bg-yellow-100 border border-yellow-300'}`;
+            resultDiv.innerHTML = `
+                <div class="flex items-start">
+                    <span class="text-2xl mr-3">${eligible ? '✅' : '⚠️'}</span>
+                    <div>
+                        <h4 class="font-semibold ${eligible ? 'text-green-800' : 'text-yellow-800'} mb-2">
+                            ${eligible ? 'Eligible!' : 'Needs Review'}
+                        </h4>
+                        <p class="${eligible ? 'text-green-700' : 'text-yellow-700'}">${message}</p>
+                        <button onclick="showSection('contact')" class="mt-3 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition-colors">
+                            Get Detailed Quote
+                        </button>
+                    </div>
+                </div>
+            `;
+            resultDiv.classList.remove('hidden');
+        }
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your application! This is a demo form. In a real implementation, your details would be securely processed and our team would contact you within 24 hours.');
+        });
+
+        // Callback request
+        function requestCallback() {
+            const phone = prompt('Please enter your phone number for callback:');
+            if (phone) {
+                alert(`Thank you! Our loan expert will call you at ${phone} within 30 minutes during business hours.`);
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('home');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'970a289da13c2e99',t:'MTc1NTQ0NDA2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
