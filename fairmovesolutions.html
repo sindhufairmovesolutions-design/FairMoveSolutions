@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoFinance Pro - Car Loans Made Easy</title>
+    <title>Fair Move Solutions Loans Made Easy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .gradient-bg {
@@ -40,7 +40,7 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
-                    <div class="text-2xl font-bold text-indigo-600">🚗 AutoFinance Pro</div>
+                    <div class="text-2xl font-bold text-indigo-600">🚗 Fair Move Solutions</div>
                 </div>
                 <div class="hidden md:flex space-x-1">
                     <button onclick="showSection('home')" class="nav-btn px-4 py-2 rounded-lg transition-colors hover:bg-indigo-100">Home</button>
@@ -586,18 +586,18 @@
                                     <div class="text-2xl mr-4">✉️</div>
                                     <div>
                                         <h4 class="font-semibold text-gray-800">Email</h4>
-                                        <p class="text-gray-600">loans@autofinancepro.com</p>
-                                        <p class="text-gray-600">support@autofinancepro.com</p>
+                                        <p class="text-gray-600">loans@fairmovesolutions.com</p>
+                                        <p class="text-gray-600">support@fairmovesolutions.com</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
                                     <div class="text-2xl mr-4">📍</div>
                                     <div>
                                         <h4 class="font-semibold text-gray-800">Address</h4>
-                                        <p class="text-gray-600">123 Finance Street<br>Business District<br>Mumbai, Maharashtra 400001</p>
+                                        <p class="text-gray-600">Ameerpet, Telangana</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start">
+                                <!-- <div class="flex items-start">
                                     <div class="text-2xl mr-4">🕒</div>
                                     <div>
                                         <h4 class="font-semibold text-gray-800">Business Hours</h4>
@@ -605,7 +605,7 @@
                                         <p class="text-gray-600">Saturday: 9:00 AM - 2:00 PM</p>
                                         <p class="text-gray-600">Sunday: Closed</p>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
@@ -625,7 +625,7 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <div class="text-2xl font-bold mb-4">🚗 AutoFinance Pro</div>
+                    <div class="text-2xl font-bold mb-4">🚗 Fair Move Solutions</div>
                     <p class="text-gray-300 mb-4">Your trusted partner for car loans with competitive rates and quick approvals.</p>
                     <div class="flex space-x-4">
                         <span class="text-2xl cursor-pointer hover:text-indigo-400">📘</span>
@@ -656,13 +656,13 @@
                     <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
                     <ul class="space-y-2">
                         <li class="text-gray-300">📞 +91 1800-123-4567</li>
-                        <li class="text-gray-300">✉️ loans@autofinancepro.com</li>
-                        <li class="text-gray-300">📍 Mumbai, Maharashtra</li>
+                        <li class="text-gray-300">✉️ loans@fairmovesolutions.com</li>
+                        <li class="text-gray-300">📍 Ameerpet, Telangana</li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p class="text-gray-300">&copy; 2024 AutoFinance Pro. All rights reserved. | Privacy Policy | Terms & Conditions</p>
+                <p class="text-gray-300">&copy; 2025 fairmovesolutions. All rights reserved. | Privacy Policy | Terms & Conditions</p>
             </div>
         </div>
     </footer>
@@ -769,10 +769,22 @@
         }
 
         // Contact form submission
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
+        document.getElementById("contact-form").addEventListener("submit", async (e) => {
             e.preventDefault();
-            alert('Thank you for your application! This is a demo form. In a real implementation, your details would be securely processed and our team would contact you within 24 hours.');
-        });
+            const data = new FormData(e.target);
+            const res = await fetch("https://formspree.io/f/meozwkgq", {
+                method: "POST",
+                body: data,
+                headers: { Accept: "application/json" }
+            });
+            if (res.ok) {
+                alert("✅ Thanks! Your application was submitted.");
+                e.target.reset();
+            } else {
+                alert("❌ Oops! Something went wrong.");
+            }
+            });
+
 
         // Callback request
         function requestCallback() {
@@ -789,3 +801,4 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'970a289da13c2e99',t:'MTc1NTQ0NDA2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
